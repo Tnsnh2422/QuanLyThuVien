@@ -1,27 +1,13 @@
 
 import Controller.controllerLOGIN;
-import View.formLOGIN;
+import View.formLogin;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Le Trong Nam
- */
 public class main {
     public static void main(String[] args) {
-         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                formLOGIN form = new formLOGIN();
-                     controllerLOGIN controLOGIN = new controllerLOGIN(form);
-                     controLOGIN.showFormLogin();
-                        
-                
-            }
-        });
+         java.awt.EventQueue.invokeLater(() -> {
+             formLogin form = new formLogin();
+             controllerLOGIN controLOGIN = new controllerLOGIN(form);
+             controLOGIN.showFormLogin();
+         });
     }
 }

@@ -10,10 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- *
- * @author Le Trong Nam
- */
 public class DAOlogin {
     public int checkTaiKhoan(String tk , String mk) throws SQLException{
       DAO d1 = new DAO();
@@ -25,7 +21,7 @@ public class DAOlogin {
             int check=rs.getInt("ItAdmin");
             if(check==1)
                 return 11;
-            if(check==0)
+            else
                 return 1;    
         }
         return 0 ;

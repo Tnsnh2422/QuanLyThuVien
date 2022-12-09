@@ -5,23 +5,19 @@
  */
 package Controller;
 
-import View.formLOGIN;
+import View.formLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Le Trong Nam
- */
 public class controllerLOGIN {
 
-    private formLOGIN formLogin;
+    private formLogin formLogin;
     private DAOlogin DAOlogin;
 
-    public controllerLOGIN(formLOGIN view) {
+    public controllerLOGIN(formLogin view) {
         this.formLogin = view;
         DAOlogin = new DAOlogin();
         formLogin.addLoginListener(new addLoginListener());
@@ -35,23 +31,12 @@ public class controllerLOGIN {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String tk = formLogin.tfTaiKhoan.getText();
-            String mk = formLogin.pwMatKhau.getText();
+            String tk = formLogin.tfUsername.getText();
+            String mk = formLogin.tfPassword.getText();
             try {
                 if (DAOlogin.checkTaiKhoan(tk, mk) == 11) {
                     formLogin.showMessage("Đăng nhâp thành công tai khoan admin");
-         
-                    //FormQuanLySinhVien formSinhVien = new FormQuanLySinhVien();
-                    //controllerQuanLySinhVien cnQuanLySinhVien = new controllerQuanLySinhVien(formSinhVien);
-                    //formSinhVien.lbTenManager.setText(tk);
-                    //////////////////////////////////////////////////////////////////
-                    //try {
-                        //cnQuanLySinhVien.showSinhVienView();
-                        formLogin.setVisible(false);
-
-                    //} catch (SQLException ex) {
-
-                    //}
+                    formLogin.setVisible(false);
                 }
                 else if (DAOlogin.checkTaiKhoan(tk, mk) == 1) {
                     formLogin.showMessage("Đăng nhâp thành công tai khoan user");

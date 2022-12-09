@@ -23,5 +23,5 @@ public class DAO {
         }
         return conn;
     }
-   // đổ dữ liệu từ SQl vào list sinhVien
+   // đổ dữ liệu từ SQl vào list Thu viên
 }

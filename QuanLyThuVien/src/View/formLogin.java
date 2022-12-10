@@ -104,7 +104,7 @@ public class formLogin extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Forget Password?");
+        jLabel9.setText("Forgot Password?");
 
         btLogin.setBackground(new java.awt.Color(255, 255, 255));
         btLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

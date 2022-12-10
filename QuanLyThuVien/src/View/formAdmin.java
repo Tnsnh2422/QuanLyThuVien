@@ -5,7 +5,6 @@
  */
 package View;
 
-import View.UserManagementPanel;
 import javax.swing.ImageIcon;
 
 /**

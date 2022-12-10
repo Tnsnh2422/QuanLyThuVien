@@ -132,21 +132,23 @@ public class BookManagementPanel extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jB_bookinfo)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jB_maSach)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_MaSach, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jB_BookName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txt_BookName))
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jB_bookinfo)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jB_maSach)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_MaSach))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jB_TheLoai)
                         .addGap(18, 18, 18)
                         .addComponent(txt_TheLoai)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +171,7 @@ public class BookManagementPanel extends javax.swing.JPanel {
         );
 
         btn_New.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btn_New.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinhNen/Icon/Add-icon-18.png"))); // NOI18N
+        btn_New.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinhNen/Icon/undo.png"))); // NOI18N
         btn_New.setText("Làm Mới");
         btn_New.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -291,7 +293,7 @@ public class BookManagementPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jB_Bookstable)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jSeparator2)))
@@ -305,7 +307,7 @@ public class BookManagementPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -357,8 +359,7 @@ public class BookManagementPanel extends javax.swing.JPanel {
         DataValidator.validateEmpty(txt_MaSach, sb, "Mã Sách không được để trống");
         if (sb.length()>0) {
             MessageDialogHelper.showErrorDialog(formAdmin, "Lỗi", sb.toString());
-        }
-        if (MessageDialogHelper.showConfirmDialog(formAdmin, "Hỏi", "Bạn có muốn cập nhật thông tin ?") == JOptionPane.NO_OPTION) {
+        }else if (MessageDialogHelper.showConfirmDialog(formAdmin, "Hỏi", "Bạn có muốn cập nhật thông tin ?") == JOptionPane.NO_OPTION) {
             return;
         }
         try {
@@ -384,8 +385,7 @@ public class BookManagementPanel extends javax.swing.JPanel {
         DataValidator.validateEmpty(txt_MaSach, sb, "Mã Sách không được để trống");
         if (sb.length()>0) {
             MessageDialogHelper.showErrorDialog(formAdmin, "Lỗi", sb.toString());
-        }
-        if (MessageDialogHelper.showConfirmDialog(formAdmin, "Hỏi", "Bạn có muốn xóa sách ?") == JOptionPane.NO_OPTION) {
+        }else if (MessageDialogHelper.showConfirmDialog(formAdmin, "Hỏi", "Bạn có muốn xóa sách ?") == JOptionPane.NO_OPTION) {
             return;
         }
         try {

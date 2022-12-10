@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import View.formAdmin;
 import View.formLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,6 +37,8 @@ public class controllerLOGIN {
             try {
                 if (DAOlogin.checkTaiKhoan(tk, mk) == 11) {
                     formLogin.showMessage("Đăng nhâp thành công tai khoan admin");
+                    formAdmin formAdmin = new formAdmin();
+                    formAdmin.setVisible(true);
                     formLogin.setVisible(false);
                 }
                 else if (DAOlogin.checkTaiKhoan(tk, mk) == 1) {

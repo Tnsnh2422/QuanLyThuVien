@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 
 public class DAO {
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         Connection conn = null;
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

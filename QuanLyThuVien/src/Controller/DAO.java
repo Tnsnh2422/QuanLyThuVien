@@ -11,17 +11,17 @@ import java.sql.DriverManager;
 public class DAO {
 
     public static Connection getConnection() {
-        Connection conn = null;
+        Connection con = null;
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            conn = DriverManager.getConnection("jdbc:sqlserver://NEXUSLITE-PC\\SQLEXPRESS:1433;"
+            con = DriverManager.getConnection("jdbc:sqlserver://NEXUSLITE-PC\\SQLEXPRESS:1433;"
                     + "databaseName=QuanLyThuVien;"
                     + "username=sa;password=123");
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return conn;
+        return con;
     }
    // đổ dữ liệu từ SQl vào list Thu viên
 }

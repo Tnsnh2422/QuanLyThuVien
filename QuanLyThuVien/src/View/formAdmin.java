@@ -141,7 +141,7 @@ public class formAdmin extends javax.swing.JFrame {
         if (mStudentPanel == null){
             mStudentPanel = new UserManagementPanel();
             ImageIcon icon = new ImageIcon(getClass().getResource("/hinhNen/Icon/10207-man-student-light-skin-tone-icon.png"));
-            tabMainBoard.addTab("Quản Lý Ban Doc  ", icon, mStudentPanel, "Quản Lý Ban Doc");
+            tabMainBoard.addTab("Quản Lý Bạn Đọc  ", icon, mStudentPanel, "Quản Lý Bạn Đọc");
         }
         tabMainBoard.setSelectedComponent(mStudentPanel);
     }//GEN-LAST:event_btn_UserManagementActionPerformed

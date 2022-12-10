@@ -7,12 +7,11 @@ package View;
 
 import java.sql.Connection;
 import javax.swing.table.DefaultTableModel;
-import Controller.ControllerBooks;
+import Controller.DAO;
 import Controller.DAOBooks;
 import Controller.DataValidator;
 import Controller.MessageDialogHelper;
 import Model.Books;
-import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -325,7 +324,7 @@ public class BookManagementPanel extends javax.swing.JPanel {
             tableBooks.removeAll();
             String[] arr = {"Mã Sách", "Tên Sách", "Thể Loại"};
             DefaultTableModel model = new DefaultTableModel(arr, 0);
-            Connection connection = ControllerBooks.getConnection();
+            Connection connection = DAO.getConnection();
             String querry = "SELECT * FROM dbo.[SACH]";
             PreparedStatement ps = connection.prepareStatement(querry);
             ps.executeQuery();

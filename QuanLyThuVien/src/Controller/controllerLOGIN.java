@@ -36,13 +36,13 @@ public class controllerLOGIN {
             String mk = formLogin.tfPassword.getText();
             try {
                 if (DAOlogin.checkTaiKhoan(tk, mk) == 11) {
-                    formLogin.showMessage("Đăng nhâp thành công tai khoan admin");
+                    formLogin.showMessage("Đăng nhâp thành công tài khoản admin");
                     formAdmin formAdmin = new formAdmin();
                     formAdmin.setVisible(true);
                     formLogin.setVisible(false);
                 }
                 else if (DAOlogin.checkTaiKhoan(tk, mk) == 1) {
-                    formLogin.showMessage("Đăng nhâp thành công tai khoan user");
+                    formLogin.showMessage("Đăng nhâp thành công tài khoản user");
                     formLogin.setVisible(false);
                 }
                 else {

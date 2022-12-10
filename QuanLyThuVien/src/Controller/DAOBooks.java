@@ -21,7 +21,7 @@ public class DAOBooks {
             throws Exception{
                 String sql = "INSERT INTO [dbo].[SACH]([MaSach], [TenSach], [TheLoai])" + " VALUES(?, ?, ?)";
                 try (
-                        Connection con = ControllerBooks.getConnection();
+                        Connection con = DAO.getConnection();
                         PreparedStatement pstmt = con.prepareStatement(sql);    
                     ){
                     pstmt.setString(1, sach.getMaSach());
@@ -35,7 +35,7 @@ public class DAOBooks {
             throws Exception{
                 String sql = "UPDATE dbo.SACH" + " SET TenSach = ?, TheLoai = ?" + " WHERE MaSach = ?";
                 try (
-                        Connection con = ControllerBooks.getConnection();
+                        Connection con = DAO.getConnection();
                         PreparedStatement pstmt = con.prepareStatement(sql);    
                     ){
                     pstmt.setString(3, sach.getMaSach());
@@ -49,7 +49,7 @@ public class DAOBooks {
             throws Exception{
                 String sql = "DELETE FROM dbo.SACH" + " WHERE MaSach = ?";
                 try (
-                        Connection con = ControllerBooks.getConnection();
+                        Connection con = DAO.getConnection();
                         PreparedStatement pstmt = con.prepareStatement(sql);    
                     ){
                     pstmt.setString(1, MaSach);
@@ -62,7 +62,7 @@ public class DAOBooks {
             throws Exception{
                 String sql = "SELECT * FROM dbo.SACH" + " WHERE MaSach = ?";
                 try (
-                        Connection con = ControllerBooks.getConnection();
+                        Connection con = DAO.getConnection();
                         PreparedStatement pstmt = con.prepareStatement(sql);    
                     ){
                     pstmt.setString(1, MaSach);

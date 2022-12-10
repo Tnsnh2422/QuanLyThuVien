@@ -7,6 +7,7 @@ package Controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DAO {
 
@@ -14,12 +15,10 @@ public class DAO {
         Connection con = null;
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = DriverManager.getConnection("jdbc:sqlserver://NEXUSLITE-PC\\SQLEXPRESS:1433;"
-                    + "databaseName=QuanLyThuVien;"
+            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;"
+                    + "databaseName=QuanLySV;"
                     + "username=sa;password=123");
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | SQLException e) {
         }
         return con;
     }

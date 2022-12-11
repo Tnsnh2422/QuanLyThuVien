@@ -1,18 +1,4 @@
-create database QuanLyThuVien
-use QuanLyThuVien
-
-create table users (
-tenDangNhap nvarchar(20) primary key,
-matKhau nvarchar(20),
-itAdmin int);
-
-insert into users values ('admin','123',1);
-insert into users values ('user1','123',0);
-
-
-
-
-
+use QuanLySV
 
 insert into sinhVien 
 values('admin1','123',N'lê nam',20,'C:\\Users\\Le Trong Nam\\Downloads\\iconDangNhap1.jpg');

@@ -7,20 +7,21 @@ package Controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class DAO {
 
     public static Connection getConnection() {
-        Connection con = null;
+        Connection conn = null;
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;"
-                    + "databaseName=QuanLySV;"
+            conn = DriverManager.getConnection("jdbc:sqlserver://NEXUSLITE-PC\\SQLEXPRESS:1433;"
+                    + "databaseName=QuanLyThuVien;"
                     + "username=sa;password=123");
-        } catch (ClassNotFoundException | SQLException e) {
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return con;
+        return conn;
     }
    // đổ dữ liệu từ SQl vào list Thu viên
 }

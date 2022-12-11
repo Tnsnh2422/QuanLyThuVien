@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Controller.DAO;
 import Model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

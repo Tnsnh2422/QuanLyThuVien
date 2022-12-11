@@ -7,6 +7,7 @@ package Controller;
 
 import View.formAdmin;
 import View.formLogin;
+import View.formUser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -36,13 +37,15 @@ public class controllerLOGIN {
             String mk = formLogin.tfPassword.getText();
             try {
                 if (DAOlogin.checkTaiKhoan(tk, mk) == 11) {
-                    formLogin.showMessage("Đăng nhâp thành công tài khoản admin");
+                    formLogin.showMessage("Đăng nhâp thành công tai khoan admin");
                     formAdmin formAdmin = new formAdmin();
                     formAdmin.setVisible(true);
                     formLogin.setVisible(false);
                 }
                 else if (DAOlogin.checkTaiKhoan(tk, mk) == 1) {
-                    formLogin.showMessage("Đăng nhâp thành công tài khoản user");
+                    formLogin.showMessage("Đăng nhâp thành công tai khoan user");
+                    formUser formUser = new formUser();
+                    formUser.setVisible(true);
                     formLogin.setVisible(false);
                 }
                 else {

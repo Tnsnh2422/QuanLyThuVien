@@ -5,21 +5,14 @@
  */
 package View;
 
-import View.UserManagementPanel;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author VietNguyen
- */
 public class formAdmin extends javax.swing.JFrame {
     
     private UserManagementPanel mStudentPanel;
     private BookManagementPanel mBookPanel;
     private InForPanel inforPanel;
-    /**
-     * Creates new form formAdmin
-     */
+    
     public formAdmin() {
         
         initComponents();
@@ -114,7 +107,7 @@ public class formAdmin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
                     .addComponent(tabMainBoard))
                 .addContainerGap())
         );
@@ -189,8 +182,6 @@ public class formAdmin extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(formAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

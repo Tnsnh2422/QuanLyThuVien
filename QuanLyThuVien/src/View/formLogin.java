@@ -80,11 +80,6 @@ public class formLogin extends javax.swing.JFrame {
         tfUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tfUsername.setForeground(new java.awt.Color(255, 255, 255));
         tfUsername.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        tfUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfUsernameActionPerformed(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -222,10 +217,6 @@ public class formLogin extends javax.swing.JFrame {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void tfUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfUsernameActionPerformed
      public void addLoginListener(ActionListener log){
         btLogin.addActionListener(log);
     }

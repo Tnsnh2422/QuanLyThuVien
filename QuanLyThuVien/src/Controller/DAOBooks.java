@@ -59,14 +59,14 @@ public class DAOBooks {
         }
     
     //-------------------------Tìm kiếm Sách
-    public Books timSach(String MaSach)
+    public Books timSach(String tenSach)
             throws Exception{
-                String sql = "SELECT * FROM dbo.SACH" + " WHERE MaSach = ?";
+                String sql = "SELECT * FROM dbo.SACH" + " WHERE TenSach = ?";
                 try (
                         Connection con = DAO.getConnection();
                         PreparedStatement pstmt = con.prepareStatement(sql);    
                     ){
-                    pstmt.setString(1, MaSach);
+                    pstmt.setString(1, tenSach);
                     try(ResultSet rs = pstmt.executeQuery();){
                         if(rs.next()){
                             Books sach = new Books();

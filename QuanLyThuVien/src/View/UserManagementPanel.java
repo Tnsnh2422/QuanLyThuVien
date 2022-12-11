@@ -35,7 +35,7 @@ public class UserManagementPanel extends javax.swing.JPanel {
             DefaultTableModel model = new DefaultTableModel(arr, 0);
             Connection connection = DAO.getConnection();
             String querry = "SELECT [tenDangNhap], [matKhau], [maSV], [hoTen], [email] ,[gioiTinh], [diaChi]"
-                    + " FROM [dbo].[users]";
+                    + " FROM [dbo].[users]" + "WHERE [ItAdmin]=0";
             PreparedStatement ps = connection.prepareStatement(querry);
             ps.executeQuery();
             ResultSet rs = ps.executeQuery();

@@ -22,7 +22,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class userInforPanel extends javax.swing.JPanel {
     
-    private formAdmin formAdmin;
+    private formUser formUser;
+    private String tk;
     
     public userInforPanel() {
         initComponents();
@@ -51,7 +52,7 @@ public class userInforPanel extends javax.swing.JPanel {
             }
             TableUsers.setModel(model);
         } catch (SQLException ex) {
-            Logger.getLogger(BookManagementPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(libraryPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -308,8 +309,8 @@ public class userInforPanel extends javax.swing.JPanel {
         DataValidator.validateEmpty(txt_password, sb, "Mật Khẩu không được để trống");
         DataValidator.validateEmpty(txt_name, sb, "Tên Sinh Viên không được để trống");
         if (sb.length()>0) {
-            MessageDialogHelper.showErrorDialog(formAdmin, "Lỗi", sb.toString());
-        }else if (MessageDialogHelper.showConfirmDialog(formAdmin, "Hỏi", "Bạn có muốn cập nhật thông tin ?") == JOptionPane.NO_OPTION) {
+            MessageDialogHelper.showErrorDialog(formUser, "Lỗi", sb.toString());
+        }else if (MessageDialogHelper.showConfirmDialog(formUser, "Hỏi", "Bạn có muốn cập nhật thông tin ?") == JOptionPane.NO_OPTION) {
             return;
         }
         try {
@@ -330,12 +331,12 @@ public class userInforPanel extends javax.swing.JPanel {
             
             DAOUser dao = new DAOUser();
             if(dao.suaUser(user)){
-                MessageDialogHelper.showMessageDialog(formAdmin, "Thông Báo", "Sửa thông tin người dùng thành công");
+                MessageDialogHelper.showMessageDialog(formUser, "Thông Báo", "Sửa thông tin người dùng thành công");
             }else{
-                MessageDialogHelper.showConfirmDialog(formAdmin, "Cảnh Báo", "Sửa thông tin người dùng thất bại");
+                MessageDialogHelper.showConfirmDialog(formUser, "Cảnh Báo", "Sửa thông tin người dùng thất bại");
             }
         } catch (Exception e) {
-            MessageDialogHelper.showErrorDialog(formAdmin,"Lỗi", e.getMessage());
+            MessageDialogHelper.showErrorDialog(formUser,"Lỗi", e.getMessage());
         }
         showData();
         btn_resetActionPerformed(evt);

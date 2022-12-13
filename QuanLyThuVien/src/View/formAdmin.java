@@ -12,7 +12,8 @@ public class formAdmin extends javax.swing.JFrame {
     private UserManagementPanel mStudentPanel;
     private BookManagementPanel mBookPanel;
     private InForPanel inforPanel;
-    
+    private HistoryPanel hisPanel;
+    private BorrowBooksManagementPanel bBooksPanel;
     public formAdmin() {
         
         initComponents();
@@ -36,8 +37,11 @@ public class formAdmin extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JToolBar.Separator();
         btn_BookManagement = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
-        btn_info = new javax.swing.JButton();
+        btn_muonSach = new javax.swing.JButton();
+        jSeparator6 = new javax.swing.JToolBar.Separator();
+        btn_LichSu = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JToolBar.Separator();
+        btn_info = new javax.swing.JButton();
         tabMainBoard = new javax.swing.JTabbedPane();
         jSeparator5 = new javax.swing.JSeparator();
 
@@ -86,6 +90,32 @@ public class formAdmin extends javax.swing.JFrame {
         jToolBar1.add(btn_BookManagement);
         jToolBar1.add(jSeparator3);
 
+        btn_muonSach.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinhNen/Icon/enrollment.png"))); // NOI18N
+        btn_muonSach.setText("Đăng Kí Mượn Sách");
+        btn_muonSach.setFocusable(false);
+        btn_muonSach.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_muonSach.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_muonSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_muonSachActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btn_muonSach);
+        jToolBar1.add(jSeparator6);
+
+        btn_LichSu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinhNen/Icon/File-History-icon.png"))); // NOI18N
+        btn_LichSu.setText("Lịch Sử Mượn Sách");
+        btn_LichSu.setFocusable(false);
+        btn_LichSu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_LichSu.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_LichSu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_LichSuActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btn_LichSu);
+        jToolBar1.add(jSeparator4);
+
         btn_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinhNen/Icon/Info-icon.png"))); // NOI18N
         btn_info.setText("Thông Tin");
         btn_info.setFocusable(false);
@@ -97,7 +127,6 @@ public class formAdmin extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(btn_info);
-        jToolBar1.add(jSeparator4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,7 +136,7 @@ public class formAdmin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 749, Short.MAX_VALUE)
                     .addComponent(tabMainBoard))
                 .addContainerGap())
         );
@@ -157,6 +186,24 @@ public class formAdmin extends javax.swing.JFrame {
         tabMainBoard.setSelectedComponent(inforPanel);
     }//GEN-LAST:event_btn_infoActionPerformed
 
+    private void btn_LichSuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LichSuActionPerformed
+        if (hisPanel == null){
+            hisPanel = new HistoryPanel();
+            ImageIcon icon = new ImageIcon(getClass().getResource("/hinhNen/Icon/File-History-icon.png"));
+            tabMainBoard.addTab("Lịch Sử Mượn Sách   ", icon, hisPanel, "Lịch Sử Mượn Sách");
+        }
+        tabMainBoard.setSelectedComponent(hisPanel);
+    }//GEN-LAST:event_btn_LichSuActionPerformed
+
+    private void btn_muonSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_muonSachActionPerformed
+        if (bBooksPanel == null){
+            bBooksPanel = new BorrowBooksManagementPanel();
+            ImageIcon icon = new ImageIcon(getClass().getResource("/hinhNen/Icon/new-file.png"));
+            tabMainBoard.addTab("Đăng Ký Mượn Sách   ", icon, bBooksPanel, "Đăng Ký Mượn Sách");
+        }
+        tabMainBoard.setSelectedComponent(bBooksPanel);
+    }//GEN-LAST:event_btn_muonSachActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -195,14 +242,17 @@ public class formAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_BookManagement;
+    private javax.swing.JButton btn_LichSu;
     private javax.swing.JButton btn_UserManagement;
     private javax.swing.JButton btn_exit;
     private javax.swing.JButton btn_info;
+    private javax.swing.JButton btn_muonSach;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JToolBar.Separator jSeparator6;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JTabbedPane tabMainBoard;
     // End of variables declaration//GEN-END:variables

@@ -53,13 +53,13 @@ public class userInforPanel extends javax.swing.JPanel {
                 txt_Address.setText(rs.getString("diaChi"));
                 String sex=rs.getString("gioiTinh");
                 if("Nam".equals(sex))
-                    jRadio_Nam.isSelected();
+                    jRadio_Nam.doClick();
                 else
                 {
                     if("Nữ".equals(sex))
-                        JRadio_Nu.isSelected();
+                        JRadio_Nu.doClick();
                     else
-                        JRadio_khac.isSelected();
+                        JRadio_khac.doClick();
                 }
                 vector.add(rs.getString("maSach"));
                 vector.add(rs.getString("tenSach"));

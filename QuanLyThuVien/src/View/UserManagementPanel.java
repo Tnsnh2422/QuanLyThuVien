@@ -35,7 +35,7 @@ public class UserManagementPanel extends javax.swing.JPanel {
             DefaultTableModel model = new DefaultTableModel(arr, 0);
             Connection connection = DAO.getConnection();
             String querry = "SELECT [tenDangNhap], [matKhau], [maSV], [hoTen], [email] ,[gioiTinh], [diaChi]"
-                    + " FROM [dbo].[users]" + "WHERE [ItAdmin]=0";
+                    + " FROM [dbo].[users]" + "WHERE [ItAdmin]=0" + "ORDER BY maSV";
             PreparedStatement ps = connection.prepareStatement(querry);
             ps.executeQuery();
             ResultSet rs = ps.executeQuery();
@@ -400,8 +400,7 @@ public class UserManagementPanel extends javax.swing.JPanel {
                 user.setGioiTinh("Khác");
             }
             user.setEmail(txt_email.getText());
-            user.setDiaChi(txt_Address.getText());
-            
+            user.setDiaChi(txt_Address.getText());          
             DAOUser dao = new DAOUser();
             if(dao.themUser(user)){
                 MessageDialogHelper.showMessageDialog(formAdmin, "Thông Báo", "Thêm người dùng mới thành công");

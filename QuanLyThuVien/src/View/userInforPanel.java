@@ -6,11 +6,9 @@
 package View;
 
 import Controller.DAO;
-import Controller.DAOBorrowBook;
 import Controller.DAOUser;
 import Controller.DataValidator;
 import Controller.MessageDialogHelper;
-import Model.BorrowBook;
 import Model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,9 +23,13 @@ import javax.swing.table.DefaultTableModel;
 public class userInforPanel extends javax.swing.JPanel {
     
     private formUser formUser;
-
+    String tk="";
     
     public userInforPanel() {
+        initComponents();
+    }
+    public userInforPanel(String TK) {
+        tk=TK;
         initComponents();
     }
 
@@ -37,9 +39,9 @@ public class userInforPanel extends javax.swing.JPanel {
             String[] arr = {"Mã Sách", "Tên Sách", "Thể Loại", "Ngày Mượn", "Hạn Trả"};
             DefaultTableModel model = new DefaultTableModel(arr, 0);
             Connection connection = DAO.getConnection();
-            String querry = "SELECT  matKhau,hoTen,users.maSV,gioiTinh,email,diaChi,muonSach.maSach, tenSach, theLoai, ngayMuon, hanTra" 
+            String querry = "SELECT  tenDangNhap,matKhau,hoTen,users.maSV,gioiTinh,email,diaChi,muonSach.maSach, tenSach, theLoai, ngayMuon, hanTra" 
                     + " FROM muonSach, users, sach" 
-                    + " WHERE muonSach.MaSV=users.MaSV AND muonSach.maSach=sach.maSach ";
+                    + " WHERE muonSach.MaSV=users.MaSV AND muonSach.maSach=sach.maSach AND tenDangNhap = '"+ tk + "'";
               
             PreparedStatement ps = connection.prepareStatement(querry);
             ps.executeQuery();
@@ -53,13 +55,13 @@ public class userInforPanel extends javax.swing.JPanel {
                 txt_Address.setText(rs.getString("diaChi"));
                 String sex=rs.getString("gioiTinh");
                 if("Nam".equals(sex))
-                    jRadio_Nam.isSelected();
+                    jRadio_Nam.doClick();
                 else
                 {
                     if("Nữ".equals(sex))
-                        JRadio_Nu.isSelected();
+                        JRadio_Nu.doClick();
                     else
-                        JRadio_khac.isSelected();
+                        JRadio_khac.doClick();
                 }
                 vector.add(rs.getString("maSach"));
                 vector.add(rs.getString("tenSach"));
@@ -304,7 +306,7 @@ public class userInforPanel extends javax.swing.JPanel {
         }
         try {
             User user = new User();
-            user.setTenDangNhap(tk);
+            user.setTaiKhoan(tk);
             user.setMatKhau(txt_password.getText());
             user.setHoTen(txt_name.getText());
             user.setMaSV(txt_MaSV.getText());

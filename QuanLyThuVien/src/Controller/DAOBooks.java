@@ -61,7 +61,7 @@ public class DAOBooks {
     //-------------------------Tìm kiếm Sách
     public Books timSach(String tenSach)
             throws Exception{
-                String sql = "SELECT * FROM dbo.SACH" + " WHERE TenSach = ?";
+                String sql = "SELECT * FROM dbo.SACH" + " WHERE maSach = ?";
                 try (
                         Connection con = DAO.getConnection();
                         PreparedStatement pstmt = con.prepareStatement(sql);    

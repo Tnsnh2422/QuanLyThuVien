@@ -12,13 +12,15 @@ public class formUser extends javax.swing.JFrame {
     private userInforPanel userInforPanel;
     private libraryPanel libraryPanel;
     private InForPanel inforPanel;
-    /**
-     * Creates new form formAdmin
-     */
+    String TK ="";
+    
     public formUser() {
-        
         initComponents();
-        
+        setLocationRelativeTo(null);
+    }
+    public formUser(String tk) {
+        TK=tk;
+        initComponents();
         setLocationRelativeTo(null);
     }
 
@@ -134,7 +136,7 @@ public class formUser extends javax.swing.JFrame {
 
     private void btn_UserManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UserManagementActionPerformed
         if (userInforPanel == null){
-            userInforPanel = new userInforPanel();
+            userInforPanel = new userInforPanel(TK);
             ImageIcon icon = new ImageIcon(getClass().getResource("/hinhNen/Icon/10207-man-student-light-skin-tone-icon.png"));
             tabMainBoard.addTab("Thông tin cá nhân  ", icon, userInforPanel, "Thông tin cá nhân");
         }

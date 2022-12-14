@@ -71,7 +71,7 @@ public class BookManagementPanel extends javax.swing.JPanel {
         });
 
         jB_bookSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jB_bookSearch.setText("Tìm Sách: ");
+        jB_bookSearch.setText("Mã Sách: ");
 
         txt_bookSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -321,7 +321,7 @@ public class BookManagementPanel extends javax.swing.JPanel {
             String[] arr = {"Mã Sách", "Tên Sách", "Thể Loại"};
             DefaultTableModel model = new DefaultTableModel(arr, 0);
             Connection connection = DAO.getConnection();
-            String querry = "SELECT * FROM dbo.[SACH]";
+            String querry = "SELECT * FROM dbo.[SACH] ORDER BY tenSach";
             PreparedStatement ps = connection.prepareStatement(querry);
             ps.executeQuery();
             ResultSet rs = ps.executeQuery();

@@ -8,9 +8,7 @@ public class main {
             public void run() {
                 formLogin form = new formLogin();
                      controllerLOGIN controLOGIN = new controllerLOGIN(form);
-                     controLOGIN.showFormLogin();
-                        
-                
+                     controLOGIN.showFormLogin();     
             }
         });
     }

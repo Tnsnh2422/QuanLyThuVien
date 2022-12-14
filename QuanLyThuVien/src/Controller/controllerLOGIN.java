@@ -36,20 +36,20 @@ public class controllerLOGIN {
             String tk = formLogin.tfUsername.getText();
             String mk = formLogin.tfPassword.getText();
             try {
-                if (DAOlogin.checkTaiKhoan(tk, mk) == 11) {
-                    formLogin.showMessage("Đăng nhâp thành công tai khoan admin");
-                    formAdmin formAdmin = new formAdmin();
-                    formAdmin.setVisible(true);
-                    formLogin.setVisible(false);
-                }
-                else if (DAOlogin.checkTaiKhoan(tk, mk) == 1) {
-                    formLogin.showMessage("Đăng nhâp thành công tai khoan user");
-                    formUser formUser = new formUser();
-                    formUser.setVisible(true);
-                    formLogin.setVisible(false);
-                }
-                else {
-                    formLogin.showMessage("Đăng nhâp thất bại vui lòng kiểm tra lại tài khoản");
+                switch (DAOlogin.checkTaiKhoan(tk, mk)) {
+                    case 11:
+                        formLogin.showMessage("Đăng nhâp thành công tài khoản Admin");
+                        new formAdmin().setVisible(true);                       
+                        formLogin.setVisible(false);
+                        break;
+                    case 1:
+                        formLogin.showMessage("Đăng nhâp thành công");
+                        new formUser(tk).setVisible(true);
+                        formLogin.setVisible(false);
+                        break;
+                    default:
+                        formLogin.showMessage("Đăng nhâp thất bại vui lòng kiểm tra lại tài khoản");
+                        break;
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(controllerLOGIN.class.getName()).log(Level.SEVERE, null, ex);

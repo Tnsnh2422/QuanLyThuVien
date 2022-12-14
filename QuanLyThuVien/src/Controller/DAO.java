@@ -14,8 +14,8 @@ public class DAO {
         Connection conn = null;
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;"
-                    + "databaseName=QuanLySV;"
+            conn = DriverManager.getConnection("jdbc:sqlserver://NEXUSLITE-PC\\SQLEXPRESS:1433;"
+                    + "databaseName=QuanLyThuVien;"
                     + "username=sa;password=123");
 
         } catch (Exception e) {

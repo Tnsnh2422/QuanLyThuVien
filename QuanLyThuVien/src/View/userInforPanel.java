@@ -6,9 +6,11 @@
 package View;
 
 import Controller.DAO;
+import Controller.DAOBorrowBook;
 import Controller.DAOUser;
 import Controller.DataValidator;
 import Controller.MessageDialogHelper;
+import Model.BorrowBook;
 import Model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 public class userInforPanel extends javax.swing.JPanel {
     
     private formUser formUser;
-    private String tk;
+
     
     public userInforPanel() {
         initComponents();
@@ -32,22 +34,38 @@ public class userInforPanel extends javax.swing.JPanel {
     private void showData(){
         try {
             TableUsers.removeAll();
-            String[] arr = {"Mã Sách", "Tên Sách", "Thể Loại", "Ngày Mượn", "Hạn Trả", "Ngày Trả"};
+            String[] arr = {"Mã Sách", "Tên Sách", "Thể Loại", "Ngày Mượn", "Hạn Trả"};
             DefaultTableModel model = new DefaultTableModel(arr, 0);
             Connection connection = DAO.getConnection();
-            String querry = "SELECT [maSach], [tenSach], [theLoai], [ngayMuon], [hanTra] ,[ngayTra]"
-                    + " FROM [dbo].[muonSach]";
+            String querry = "SELECT  matKhau,hoTen,users.maSV,gioiTinh,email,diaChi,muonSach.maSach, tenSach, theLoai, ngayMuon, hanTra" 
+                    + " FROM muonSach, users, sach" 
+                    + " WHERE muonSach.MaSV=users.MaSV AND muonSach.maSach=sach.maSach ";
+              
             PreparedStatement ps = connection.prepareStatement(querry);
             ps.executeQuery();
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Vector vector = new Vector();
+                txt_password.setText(rs.getString("matKhau"));
+                txt_name.setText(rs.getString("hoTen"));
+                txt_MaSV.setText(rs.getString("maSV"));
+                txt_email.setText(rs.getString("email"));
+                txt_Address.setText(rs.getString("diaChi"));
+                String sex=rs.getString("gioiTinh");
+                if("Nam".equals(sex))
+                    jRadio_Nam.isSelected();
+                else
+                {
+                    if("Nữ".equals(sex))
+                        JRadio_Nu.isSelected();
+                    else
+                        JRadio_khac.isSelected();
+                }
                 vector.add(rs.getString("maSach"));
                 vector.add(rs.getString("tenSach"));
                 vector.add(rs.getString("theLoai"));
                 vector.add(rs.getString("ngayMuon"));
                 vector.add(rs.getString("hanTra"));
-                vector.add(rs.getString("ngayTra"));
                 model.addRow(vector);
             }
             TableUsers.setModel(model);
@@ -62,14 +80,12 @@ public class userInforPanel extends javax.swing.JPanel {
 
         btnGroup_Sex = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jB_account = new javax.swing.JLabel();
         jB_password = new javax.swing.JLabel();
         jB_name = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jB_Sex = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txt_account = new javax.swing.JTextField();
         txt_password = new javax.swing.JTextField();
         txt_name = new javax.swing.JTextField();
         txt_MaSV = new javax.swing.JTextField();
@@ -81,7 +97,6 @@ public class userInforPanel extends javax.swing.JPanel {
         txt_Address = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         btn_edit = new javax.swing.JButton();
-        btn_reset = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jB_book = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -92,8 +107,6 @@ public class userInforPanel extends javax.swing.JPanel {
                 formComponentShown(evt);
             }
         });
-
-        jB_account.setText("Tài Khoản: ");
 
         jB_password.setText("Mật Khẩu:");
 
@@ -129,52 +142,38 @@ public class userInforPanel extends javax.swing.JPanel {
             }
         });
 
-        btn_reset.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btn_reset.setText("Làm Mới");
-        btn_reset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_resetActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_reset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btn_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(btn_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(btn_reset)
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addComponent(btn_edit)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
 
-        jB_book.setText("Thống kê");
+        jB_book.setText("Danh sách sách đang mượn");
 
         TableUsers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mã sách", "Tên sách", "Thể loại", "Ngày Mượn", "Hạn Trả", "Ngày Trả"
+                "Mã sách", "Tên sách", "Thể loại", "Ngày Mượn", "Hạn Trả"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true
+                false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -194,58 +193,50 @@ public class userInforPanel extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jB_account)
                                     .addComponent(jB_name)
                                     .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(20, 20, 20)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txt_MaSV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txt_MaSV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(2, 2, 2)
                                         .addComponent(txt_email)
                                         .addGap(85, 85, 85))
+                                    .addComponent(jScrollPane1)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txt_account)
-                                                    .addComponent(txt_name))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jB_password)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))))
+                                        .addComponent(txt_name)
+                                        .addGap(59, 59, 59))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jB_Sex)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadio_Nam)
-                                .addGap(18, 18, 18)
-                                .addComponent(JRadio_Nu)
-                                .addGap(18, 18, 18)
-                                .addComponent(JRadio_khac)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jB_Sex)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel7))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jRadio_Nam)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(JRadio_Nu)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(JRadio_khac))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jB_password)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(69, 69, 69)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator2)))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jB_book)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jB_account)
-                    .addComponent(txt_account, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jB_password)
                     .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -304,8 +295,6 @@ public class userInforPanel extends javax.swing.JPanel {
 
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
         StringBuilder sb = new StringBuilder();
-        DataValidator.validateEmpty(txt_MaSV, sb, "Mã Sinh Viên không được để trống");
-        DataValidator.validateEmpty(txt_account, sb, "Tài Khoản không được để trống");
         DataValidator.validateEmpty(txt_password, sb, "Mật Khẩu không được để trống");
         DataValidator.validateEmpty(txt_name, sb, "Tên Sinh Viên không được để trống");
         if (sb.length()>0) {
@@ -315,7 +304,7 @@ public class userInforPanel extends javax.swing.JPanel {
         }
         try {
             User user = new User();
-            user.setTaiKhoan(txt_account.getText());
+            user.setTenDangNhap(tk);
             user.setMatKhau(txt_password.getText());
             user.setHoTen(txt_name.getText());
             user.setMaSV(txt_MaSV.getText());
@@ -339,18 +328,7 @@ public class userInforPanel extends javax.swing.JPanel {
             MessageDialogHelper.showErrorDialog(formUser,"Lỗi", e.getMessage());
         }
         showData();
-        btn_resetActionPerformed(evt);
     }//GEN-LAST:event_btn_editActionPerformed
-
-    private void btn_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resetActionPerformed
-        txt_account.setText("");
-        txt_password.setText("");
-        txt_MaSV.setText("");
-        txt_name.setText("");
-        txt_Address.setText("");
-        txt_email.setText("");
-        btnGroup_Sex.clearSelection();
-    }//GEN-LAST:event_btn_resetActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -359,9 +337,7 @@ public class userInforPanel extends javax.swing.JPanel {
     private javax.swing.JTable TableUsers;
     private javax.swing.ButtonGroup btnGroup_Sex;
     private javax.swing.JButton btn_edit;
-    private javax.swing.JButton btn_reset;
     private javax.swing.JLabel jB_Sex;
-    private javax.swing.JLabel jB_account;
     private javax.swing.JLabel jB_book;
     private javax.swing.JLabel jB_name;
     private javax.swing.JLabel jB_password;
@@ -376,7 +352,6 @@ public class userInforPanel extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextArea txt_Address;
     private javax.swing.JTextField txt_MaSV;
-    private javax.swing.JTextField txt_account;
     private javax.swing.JTextField txt_email;
     private javax.swing.JTextField txt_name;
     private javax.swing.JTextField txt_password;

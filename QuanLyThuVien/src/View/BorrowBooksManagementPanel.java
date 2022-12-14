@@ -28,9 +28,7 @@ public class BorrowBooksManagementPanel extends javax.swing.JPanel {
     
     private formAdmin formAdmin;
 
-    /**
-     * Creates new form BorrowBooksManagementPanel
-     */
+
     public BorrowBooksManagementPanel() {
         initComponents();
     }
@@ -139,7 +137,7 @@ public class BorrowBooksManagementPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btn_lamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinhNen/Icon/undo.png"))); // NOI18N
+        btn_lamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinhNen/Icon/return.png"))); // NOI18N
         btn_lamMoi.setText("Làm Mới");
         btn_lamMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

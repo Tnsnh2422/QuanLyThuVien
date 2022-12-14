@@ -212,7 +212,7 @@
         <Component class="javax.swing.JButton" name="btn_lamMoi">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/hinhNen/Icon/undo.png"/>
+              <Image iconType="3" name="/hinhNen/Icon/return.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="L&#xe0;m M&#x1edb;i"/>
           </Properties>

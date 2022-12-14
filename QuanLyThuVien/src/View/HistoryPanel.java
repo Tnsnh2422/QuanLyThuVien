@@ -83,7 +83,7 @@ public class HistoryPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(table_History);
 
-        btn_resetData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinhNen/Icon/undo.png"))); // NOI18N
+        btn_resetData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hinhNen/Icon/return.png"))); // NOI18N
         btn_resetData.setText("Làm Mới Dữ Liệu");
         btn_resetData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +129,7 @@ public class HistoryPanel extends javax.swing.JPanel {
                     .addComponent(txt_searchHistory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_search))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
